@@ -23,17 +23,28 @@ SQL
  yum localinstall https://dev.mysql.com/get/mysql80-community-release-el7-1.noarch.rpm
 
 2) yum update
-3) yum install mysql-community-server
-4) systemctl start mysqld.service
-5)systemctl enable mysqld.service
-6)systemctl status mysqld.service
+
+3) yum install mysql-community-server    ----- install the mysql
+
+4) systemctl start mysqld.service       -------  start the mysql
+
+5)systemctl enable mysqld.service    	------- enable the mysql 
+
+6)systemctl status mysqld.service	------   check the status
+
 7) cd /var/logs/
+
    more mysqld.log
-   copy the password
-8) mysql_secure_installation   change the password
-9) mysql -h localhost -u root -p      connect to sql data base
-10) show databases;    check the data bases
-11) create database wordpress    create database for the name of wordpress
+   copy the password   by using this pasword we can change the password
+
+8) mysql_secure_installation   change the password Mysql!23   like that
+
+9) mysql -h localhost -u root -p Mysql!23     -----  connect to sql database
+
+
+10) show databases;    -----------check the data bases
+
+11) create database wordpress   ------ create database for the name of wordpress
     exit
 
 
@@ -42,34 +53,46 @@ SQL
 
 PHP (DRUPAL)
 
-1)wget http://ftp.drupal.org/files/projects/drupal-7.31.tar.gz      downlaod package
 
-2) tar -xf drupal-7.31.tar.gz     extarct the package    
+1) yum install wget -y		----- install the wget command
+
+2)  wget http://ftp.drupal.org/files/projects/drupal-7.31.tar.gz    --------     downlaod package
+
+3) tar -xf drupal-7.31.tar.gz     -------    extarct the package    
     
     create a directory for the name of drupal in /var/www/html
 	
-        go to directory i.e  cd drupal /   and copy the files into /var/www/html/drupal
+        go to directory i.e  cd drupal-7.31/   and copy the files into /var/www/html/drupal
 
             cp -rvf * /var/www/html/drupal
 
-edit the fonfiguration file   vi /etc/httpd/conf/httpf.conf
-   replace index.php in place of index.html
+edit the configuration file   vi /etc/httpd/conf/httpd.conf
+   
+replace index.php in place of index.html
 
-3) open your browser and go the any of following links to begin installation  
+4) open your browser and go the any of following links to begin installation  
 		http://your-ip-address/drupal
 
-4)To fix these above errors, run the following commands
+5)To fix these above errors, run the following commands
+
 		yum install php*
+
 systemctl start httpd
+
 mkdir -p /var/www/html/drupal/sites/default/files
+
 chmod 777 /var/www/html/drupal/sites/default/files
+
 cp -R /var/www/html/drupal/sites/default/default.settings.php /var/www/html/drupal/sites/default/settings.php
+
 chmod 777 /var/www/html/drupal/sites/default/settings.php
 
-5) go to default directory in that dafault.settings.php    rename to  setting.php
-			cp default.settings.php settings.php
+
 6)  open the file and give the data base name , username , password and hostname
+
                    vi settings.php
-          restart the service    
+
+          restart the service  systemctl restart httpd 
+  
 7)  open the browser and select languages and every thing
 
